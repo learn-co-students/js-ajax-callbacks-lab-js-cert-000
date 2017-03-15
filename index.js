@@ -34,3 +34,6 @@ function showCommits(repo) {
     document.getElementById('details').innerHTML = commitsList;
   }).fail(displayError);
 }
+
+//it all works, just need to fix the timeout error (ask a Learn expert) and then rename things so they pass the
+//Learn tests. Then we'll be all done!
