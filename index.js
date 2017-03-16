@@ -28,7 +28,7 @@ function showCommits(repo) {
   var owner = repo.dataset.owner;
   var repo = repo.dataset.repo;
   var uri = `https://api.github.com/repos/${owner}/${repo}/commits`;
-  $.get(uri, function(commits){
+  $.get(`https://api.github.com/repos/${owner}/${repo}/commits`;, function(commits){
     var commitsTemplate = Handlebars.compile(document.getElementById('commits-template').innerHTML);
     var commitsList = commitsTemplate(commits);
     document.getElementById('details').innerHTML = commitsList;
