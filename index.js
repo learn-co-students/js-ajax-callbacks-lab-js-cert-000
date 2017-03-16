@@ -7,11 +7,11 @@ $(document).ready(function (){
   handlebarsSetup()
 });
 
-var rootURL = "https://api.github.com";
+var rootURL = "https://api.github.com"; //hardcoding this in to see if it fixes their problem
 
 function searchRepositories() {
   var searchTerms = document.getElementById('searchTerms').value.split(' ').join('_');
-  var uri = rootURL + "/search/repositories?q=" + searchTerms;
+  var uri = "https://api.github.com" + "/search/repositories?q=" + searchTerms;
   $.get(uri, function(data){
     var repositoriesTemplate = Handlebars.compile(document.getElementById('repositories-template').innerHTML);
     var repoList = repositoriesTemplate(data);
@@ -34,6 +34,3 @@ function showCommits(repo) {
     document.getElementById('details').innerHTML = commitsList;
   }).fail(displayError);
 }
-
-//it all works, just need to fix the timeout error (ask a Learn expert) and then rename things so they pass the
-//Learn tests. Then we'll be all done!
