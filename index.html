@@ -20,6 +20,10 @@
   </head>
   <body>
     <main id="main">
+      <form>
+        <input type="text" id="searchTerms">
+      </form>
+      <a href="#" onclick="searchRepositories(); return false;">Search Repositories</a>
       <div id="errors"></div>
     </main>
     <div class="flexbox-container">
@@ -32,6 +36,38 @@
         <div id="details"></div>
       </div>
     </div>
+    <script id="repositories-template" type="text/x-handlebars-template">
+      <ul>
+          {{#each this.items}}
+          <!-- this could potentially be a problem. My first attempt accessing the objects inside the secondary array -->
+            <li>
+              <h2>{{name}}</h2>
+              <p>Description: {{description}}</p>
+              <p><a href="{{html_url}}">Go to repository</a></p>
+              {{> userDetails owner}}
+              <a href="#" data-owner="{{owner.login}}" data-repository="{{name}}" onclick="showCommits(this); return false;">Show Commits</a>
+            </li>
+          {{/each}}
+      </ul>
+    </script>
+    <script id="user-details-partial" type="text/x-handlebars-template">
+      <section>
+        <header>Created by <strong>{{login}}</strong></header>
+        <img src="{{avatar_url}}" height="32" width="32"><br>
+        <a href="{{url}}">Owner's profile</a>
+      </section>
+    </script>
+    <script id="commits-template" type="text/x-handlebars-template">
+      <ul>
+        {{#each this}}
+          <li>
+            <h2>{{commit.author.name}}</h2>
+            {{> userDetails author}}
+            <p>SHA: {{sha}}</p>
+          </li>
+        {{/each}}
+      </ul>
+    </script>
     <script src="jquery-3.1.0.min.js"></script>
     <script src="handlebars.js"></script>
     <script src="index.js"></script>
