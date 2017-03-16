@@ -45,7 +45,7 @@
               <p>Description: {{description}}</p>
               <p><a href="{{html_url}}">Go to repository</a></p>
               {{> userDetails owner}}
-              <a href="#" data-owner="{{owner.login}}" data-repo="{{name}}" onclick="showCommits(this); return false;">Show Commits</a>
+              <a href="#" data-owner="{{owner.login}}" data-repository="{{name}}" onclick="showCommits(this); return false;">Show Commits</a>
             </li>
           {{/each}}
       </ul>

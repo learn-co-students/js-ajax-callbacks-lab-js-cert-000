@@ -26,9 +26,9 @@ function displayError() {
 
 function showCommits(repo) {
   var owner = repo.dataset.owner;
-  var repo = repo.dataset.repo;
-  var uri = `https://api.github.com/repos/${owner}/${repo}/commits`;
-  $.get(`https://api.github.com/repos/${owner}/${repo}/commits`;, function(commits){
+  var repository = repo.dataset.repository;
+  var uri = `https://api.github.com/repos/${owner}/${repository}/commits`;
+  $.get(uri, function(commits){
     var commitsTemplate = Handlebars.compile(document.getElementById('commits-template').innerHTML);
     var commitsList = commitsTemplate(commits);
     document.getElementById('details').innerHTML = commitsList;
