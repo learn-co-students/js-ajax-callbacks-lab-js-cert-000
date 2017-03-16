@@ -7,7 +7,7 @@ $(document).ready(function (){
   handlebarsSetup()
 });
 
-var rootURL = "https://api.github.com"; //hardcoding this in to see if it fixes their problem
+var rootURL = "https://api.github.com"; //hardcoding this in since their tests don't seem to access this global variable
 
 function searchRepositories() {
   var searchTerms = document.getElementById('searchTerms').value.split(' ').join('_');
@@ -27,7 +27,7 @@ function displayError() {
 function showCommits(repo) {
   var owner = repo.dataset.owner;
   var repo = repo.dataset.repo;
-  var uri = rootURL + `/repos/${owner}/${repo}/commits`;
+  var uri = "https://api.github.com" + `/repos/${owner}/${repo}/commits`;
   $.get(uri, function(commits){
     var commitsTemplate = Handlebars.compile(document.getElementById('commits-template').innerHTML);
     var commitsList = commitsTemplate(commits);
